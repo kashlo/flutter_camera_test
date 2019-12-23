@@ -26,7 +26,9 @@ class _VideoListScreenState extends State<VideoListScreen> {
     if (snapshot.connectionState == ConnectionState.done) {
       if (snapshot.hasError) {
       } else if (snapshot.hasData) {
-        files = Directory("${snapshot.data.path}/Movies").listSync();
+        Directory("${snapshot.data.path}/Movies/").createSync(recursive: true);
+
+        files = Directory("${snapshot.data.path}/Movies/").listSync();
       } else {
         print("Error: Path unavailable");
       }
